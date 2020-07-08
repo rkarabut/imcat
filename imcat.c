@@ -240,7 +240,13 @@ int main( int argc, char* argv[] )
 	set_console_mode();
 
 	// Step 1: figure out the width and height of terminal.
-	get_terminal_size();
+	const char* termw_s = getenv( "IMCAT_TERMW" );
+	
+	if ( termw_s )  
+    		termw = atoi(termw_s); 
+	else 
+		get_terminal_size();
+
 	//fprintf( stderr, "Your terminal is size %dx%d\n", termw, termh );
 
 	// Step 2: Process all images on the command line.
